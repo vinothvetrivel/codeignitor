@@ -52,3 +52,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+/* 
+| Bread Crums url config
+| 
+| Sample $route['breadCrumb']['customer']['upload'] 	= array('customer'=>'/customer','upload Customer'=>'');
+*/
+$route['breadCrumb'] = array();
+
+/*
+| Controller post url
+|
+| Sample $route['postUrl']['customer']['upload'] 	= '/customer/process';
+*/
+$route['postUrl']  = '';

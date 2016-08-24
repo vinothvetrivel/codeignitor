@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
+	public $pageTitle;
 	/**
 	 * Index Page for this controller.
 	 *
@@ -17,6 +18,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->smarty->assign('title','Dashboard');
 		$this->smarty->view($this);
 	}	
 }

@@ -57,7 +57,7 @@ class User_details extends CI_Model {
     public function getUserDetails()
     {
         $query="SELECT 
-                    ud.user_id,account_id,role_id,username,password,first_name,last_name,email,phone,is_locked,access_user_id,access_account_id
+                    ud.user_id,account_id,role_id,username,password,first_name,last_name,email,phone,is_locked,GROUP_CONCAT(access_user_id) as access_user_id,GROUP_CONCAT(access_account_id) as access_account_id
                 FROM
                     user_details as ud
                     LEFT JOIN data_access_mapping as dam ON dam.user_id=ud.user_id

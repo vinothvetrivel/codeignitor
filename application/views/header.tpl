@@ -11,13 +11,16 @@
         <link href="{$BASEURL}css/sans.css" rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$BASEURL}css/bootstrap.min.css">
         <link rel="stylesheet" href="{$BASEURL}css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="{$BASEURL}css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="{$BASEURL}css/dataTables.responsive.css">
+        
         <script src="{$BASEURL}js/jquery-1.11.1.min.js" type="text/javascript"></script>
         <script src="{$BASEURL}js/jquery.knob.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(function() {
                 $(".knob").knob();
             });
+            var webPath = "{$BASEURL}{$EXE}";
         </script>
         
 
@@ -25,7 +28,7 @@
         <link rel="stylesheet" type="text/css" href="{$BASEURL}css/premium.css">
 
     </head>
-    <body class=" theme-blue">
+    <body class=" theme-blue" onload="common.onReponse('{$processName}')">
 
     <!-- Demo page code -->
     {literal}
