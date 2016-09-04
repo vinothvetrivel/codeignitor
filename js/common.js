@@ -1,12 +1,39 @@
 function common()
 {
-	this.onReponse	=	function(processName)
+	this.validateProcess	= function(processName, formName, methodName)
+	{
+		if(!validation.getFormData(formName))
+		{
+			return false;
+		}
+		
+		if (eval("typeof "+processName+" == 'function'"))
+		{
+			var processObj 			= 	new window[processName]();
+			processObj.formName		=	formName;
+			processObj.processName	=	processName;
+			if(methodName==''){
+				methodName = 'index';
+			}
+			if(!processObj[methodName]())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	this.triggerModal = function(id){
+		$('#'+id).modal('show');
+	}
+	
+	this.onReponse	=	function(processName,methodName)
 	{	
 		if (eval("typeof "+processName+" == 'function'"))
 		{	
 			var processObj 			= 	new window[processName]();
 			processObj.processName	=	processName;
-			if(!processObj.onResponse())
+			if(!processObj[methodName]())
 			{
 				return false;
 			}
@@ -16,8 +43,6 @@ function common()
 	
 	this.call	=	function(url,dataVal,type)
 	{
-		url = webPath+url;
-
 		var request	=	$.ajax({
 					            url: url,
 					            type: "POST",
@@ -33,7 +58,7 @@ function common()
 	        		else{
 	        			$('#modalBody').html(dataResponse);
 	        			common.generateTableView();
-	        			common.triggerModal();
+	        			common.triggerModal('modalDiv');
 	        		}
 	        	break;
 	        	case 'innerHtml':
@@ -188,6 +213,33 @@ function common()
 	            data 	: formData  // number of pages to cache
 	        } )
 	    } );
+	}
+
+	this.generateTableView	=	function()
+	{
+		$('#tableView').dataTable( {
+	        "paging"    : false,
+	        "searching" : false,
+	        "ordering"  : false,
+	        "bLengthChange": false,
+	        "bInfo" : false,
+	        "responsive": true
+	    });
+	}
+
+	this.showCompany = function()
+	{
+		var accountId = $('#account_id').val();
+		var option = "<option value=0>All</option>";
+		for(var i=0; i<company.length;i++)
+		{
+			if(accountId==company[i]['account_id']){
+				option +="<option value="+company[i]['company_id']+">"+company[i]['company_name']+"</option>"; 
+			}
+		}
+		var $el = $("#company_id");
+		$el.empty(); // remove old options
+		$el.append(option);
 	}
 }
 var common = new common;

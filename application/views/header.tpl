@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{$BASEURL}css/font-awesome.min.css">
         <link rel="stylesheet" href="{$BASEURL}css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="{$BASEURL}css/dataTables.responsive.css">
+        <link rel="stylesheet" href="{$BASEURL}css/jquery-ui.css">
         
         <script src="{$BASEURL}js/jquery-1.11.1.min.js" type="text/javascript"></script>
         <script src="{$BASEURL}js/jquery.knob.js" type="text/javascript"></script>
@@ -28,7 +29,7 @@
         <link rel="stylesheet" type="text/css" href="{$BASEURL}css/premium.css">
 
     </head>
-    <body class=" theme-blue" onload="common.onReponse('{$processName}')">
+    <body class=" theme-blue" onload="common.onReponse('{$processName}','{$methodName}')">
 
     <!-- Demo page code -->
     {literal}

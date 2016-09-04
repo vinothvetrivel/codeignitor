@@ -12,6 +12,8 @@ class User_details extends CI_Model {
     public $last_name;
     public $email;
     public $phone;
+    public $secondary_phone;
+    public $secondary_email;
     public $security_question;
     public $security_answer;
     public $theme;
@@ -25,7 +27,6 @@ class User_details extends CI_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = 'user_details';
     }
 
     public function get()
@@ -35,12 +36,12 @@ class User_details extends CI_Model {
         if(!empty($this->username))
             $this->db->where('username',$this->username);
 
-        return $this->db->get($this->table_name)->row_array();
+        return $this->db->get('user_details')->result_array();
     }
 
     public function insert()
     {
-        $this->db->insert($this->table_name,$this);
+        $this->db->insert('user_details',$this);
         return $this->db->insert_id();
     }
 
@@ -51,20 +52,35 @@ class User_details extends CI_Model {
         if(!empty($this->username))
             $this->db->where('username',$this->username);
 
-        return $this->db->update($this->table_name,$this);      
+        return $this->db->update('user_details',$this);      
     }
 
     public function getUserDetails()
     {
         $query="SELECT 
-                    ud.user_id,account_id,role_id,username,password,first_name,last_name,email,phone,is_locked,GROUP_CONCAT(access_user_id) as access_user_id,GROUP_CONCAT(access_account_id) as access_account_id
+                    ud.user_id,ud.account_id,role_id,username,password,first_name,last_name,ud.email,ud.phone,is_locked,is_account_active,GROUP_CONCAT(access_user_id) as access_user_id,GROUP_CONCAT(access_account_id) as access_account_id
                 FROM
                     user_details as ud
                     LEFT JOIN data_access_mapping as dam ON dam.user_id=ud.user_id
+                    LEFT JOIN account_details as ad ON ad.account_id=ud.account_id
                 WHERE 
                 username = ".$this->db->escape($this->username);
 
         return $this->db->query($query)->row_array();
+    }
+
+    public function checkUserExist()
+    {
+        if(!empty($this->email)){
+            $this->db->or_where('email',$this->email);
+        }
+        if(!empty($this->phone)){
+            $this->db->or_where('phone',$this->phone);
+        }
+        if(!empty($this->username)){
+            $this->db->or_where('username',$this->username);
+        }
+        return $this->db->get('user_details')->result_array();
     }
 }
 ?>

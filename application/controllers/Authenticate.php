@@ -38,8 +38,11 @@ class Authenticate extends CI_Controller {
 			
 			//Password check
 			if(!empty($result) && strcasecmp($result['password'],hash($this->config->config['passwordAlg'],$password))==0){
-				if(strcasecmp($result['access_account_id'],'Y')==0){
-					$this->access->session->set_userdata('errorMessage','User credentials locked. Please contact administrator.');
+				if(strcasecmp($result['is_account_active'],'N')==0){
+					$this->access->session->set_userdata('errorMessage','Your account is in de-active state. Please contact support team to get more information.');
+					redirect('logout');
+				}else if(strcasecmp($result['is_locked'], 'Y')==0){
+					$this->access->session->set_userdata('errorMessage','Your credentials is in locked state. Please contact support team to get more information.');
 					redirect('logout');
 				}else{
 					//Setting session details

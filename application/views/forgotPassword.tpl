@@ -9,24 +9,19 @@
       {if !empty($successMessage)}<div class="alert alert-success" style="text-align:center;"><i class="fa fa-smile-o fa-2x">&nbsp;</i>{$successMessage}</div>{/if} 
        <div class="dialog">
        <div class="panel panel-default">
-               <p class="panel-heading no-collapse">Sign In</p>
+               <p class="panel-heading no-collapse">Forgot Password</p>
               <div class="panel-body">
-                  <form name="eatrytForm" id="eatrytForm" method="post" enctype="multipart/form-data" action="{$BASEURL}{$EXE}/authenticate" onsubmit="return common.validateProcess('{$processName}','eatrytForm','')">
+                  <form name="eatrytForm" id="eatrytForm" method="post" enctype="multipart/form-data" action="{$BASEURL}{$EXE}/forgotPassword/requestPassword" onsubmit="return common.validateProcess('{$processName}','eatrytForm','')">
                        <div class="form-group">
                            <label>Username</label>
-                           <input type="text" class="form-control span12" name="username" id="username" data-role="MANDATORY" data-type="username"  />
+                           <input type="text" class="form-control span12" name="username" id="username" data-role="MANDATORY" data-type="username" />
                            {if isset($error.username)}<p class="text-danger">{$error.username}</p>{else} {/if}
                        </div>
-                       <div class="form-group">
-                          <label>Password</label>
-                          <input type="password" class="form-control^Ospan12 form-control" name="userPassword" id="userPassword" data-role="MANDATORY" />
-                          {if isset($error.userPassword)}<p class="text-danger">{$error.userPassword}</p>{else} {/if}
-                       </div>
-                       <input type="submit" name="formSubmit" class="btn btn-primary pull-right" value="Sign In" />
+                       <input type="submit" name="formSubmit" class="btn btn-primary pull-right" value="Request" />
                        <div class="clearfix"></div>
                    </form>
                </div>
            </div>
-           <p><a href="{$BASEURL}{$EXE}/forgotPassword">Forgot your password?</a></p>
+           <p><a href="{$BASEURL}{$EXE}">Back to login Page</a></p>
        </div>
 {include file="footer.tpl"}

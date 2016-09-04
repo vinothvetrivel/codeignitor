@@ -17,7 +17,7 @@
             <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="{$BASEURL}{$EXE}/user/view">My Account</a></li>
+          <li><a href="javascript:;" onclick="common.call('{$BASEURL}{$EXE}/user/view/{$smarty.session.user_id}','','popup');">My Account</a></li>
           <li class="divider"></li>
           <li><a tabindex="-1" href="{$BASEURL}{$EXE}/logout">Logout</a></li>
         </ul>

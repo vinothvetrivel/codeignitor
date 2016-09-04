@@ -20,7 +20,7 @@
 	    </div>
     	<div class="main-content">
     		<div class="rightcontainer" style="min-height:620px;">
-    		<form name="eatrytForm" id="eatrytForm" method="post" enctype="multipart/form-data" onsubmit="" action="{$BASEURL}{$EXE}{$postUrl}">
+    		<form name="eatrytForm" id="eatrytForm" method="post" enctype="multipart/form-data" action="{$BASEURL}{$EXE}{$postUrl}" onsubmit="return common.validateProcess('{$processName}','eatrytForm','{$methodName}')">
     			{include file="$template"}
     		</form>
     		</div>

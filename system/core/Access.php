@@ -23,7 +23,7 @@ class CI_Access {
 		$this->load->database();
 		$this->load->helper('url');
 		
-		$this->exeception_control = array('welcome','logout','authenticate','forgetPassword');
+		$this->exeception_control = array('welcome','logout','authenticate','forgotPassword');
 		
 		if(!isset($this->session->userdata['user_id']) && !in_array($this->router->class, $this->exeception_control)){
 			redirect('logout');

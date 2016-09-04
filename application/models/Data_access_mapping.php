@@ -10,25 +10,24 @@ class Data_access_mapping extends CI_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->table_name = 'data_access_mapping';
     }
 
     public function get()
     {
    		$this->db->where('user_id',$this->user_id);
-   		return $this->db->get($this->table_name)->row_array();
+   		return $this->db->get('data_access_mapping')->row_array();
     }
 
     public function insert()
     {
-    	$this->db->insert($this->table_name,$this);
+    	$this->db->insert('data_access_mapping',$this);
     	return $this->db->insert_id();
     }
 
     public function update()
     {
 		$this->db->where('user_id',$this->user_id);
-   		return $this->db->update($this->table_name,$this);    	
+   		return $this->db->update('data_access_mapping',$this);    	
     }
 }
 ?>
